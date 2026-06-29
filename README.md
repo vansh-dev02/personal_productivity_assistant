@@ -62,7 +62,7 @@ personal_productivity_assistant/
 Clone the repository:
 
 ```
-git clone YOUR_REPOSITORY_LINK
+git clone https://github.com/vansh-dev02/personal_productivity_assistant.git
 ```
 
 Go inside folder:
