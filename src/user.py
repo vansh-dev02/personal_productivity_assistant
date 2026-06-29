@@ -2,50 +2,99 @@ import json
 import os
 
 
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.abspath(__file__)
+    )
+)
+
+
+DATA_FILE = os.path.join(
+    BASE_DIR,
+    "data",
+    "users.json"
+)
+
+
+
 class User:
+
     def __init__(self, name, password):
+
         self.name = name
         self.password = password
 
 
+
     def save_user(self):
 
-        if not os.path.exists("data/users.json"):
-            with open("data/users.json", "w") as file:
-                json.dump([], file)
+        os.makedirs(
+            os.path.dirname(DATA_FILE),
+            exist_ok=True
+        )
 
 
-        with open("data/users.json", "r") as file:
+        if not os.path.exists(DATA_FILE):
+
+            with open(DATA_FILE,"w") as file:
+                json.dump([],file)
+
+
+
+        with open(DATA_FILE,"r") as file:
+
             users = json.load(file)
 
 
-        users.append({
-            "name": self.name,
-            "password": self.password
-        })
+
+        users.append(
+            {
+                "name": self.name,
+                "password": self.password
+            }
+        )
 
 
-        with open("data/users.json", "w") as file:
-            json.dump(users, file, indent=4)
+        with open(DATA_FILE,"w") as file:
+
+            json.dump(
+                users,
+                file,
+                indent=4
+            )
 
 
         print("User created successfully")
 
 
-    @staticmethod
-    def login(name, password):
 
-        if not os.path.exists("data/users.json"):
+
+    @staticmethod
+    def login(name,password):
+
+
+        if not os.path.exists(DATA_FILE):
+
             return False
 
 
-        with open("data/users.json", "r") as file:
-            users = json.load(file)
+
+        with open(DATA_FILE,"r") as file:
+
+            users=json.load(file)
+
 
 
         for user in users:
-            if user["name"] == name and user["password"] == password:
+
+            if (
+                user["name"] == name 
+                and 
+                user["password"] == password
+            ):
+
                 return True
+
 
 
         return False
