@@ -89,3 +89,16 @@ python src/main.py
 ## 👨‍💻 Author
 
 Vansh Chhabra
+
+
+
+## 📸 Screenshots
+
+### Login Screen
+![Login](screenshots/login.png)
+
+### Task Management
+![Tasks](screenshots/tasks.png)
+
+### Productivity Report
+![Report](screenshots/report.png)
